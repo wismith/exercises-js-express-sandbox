@@ -90,6 +90,8 @@ Or, you could display the current time.
 
 Or, you could keep track of how many people visited the page.
 
+Or, you could use the data in the URL to dynamically set the styles on the page. Maybe change the background color or the typeface?
+
 [url-express]: https://expressjs.com/
 [wiki-hypertext]: https://en.wikipedia.org/wiki/Hypertext
 [wiki-html]: https://en.wikipedia.org/wiki/HTML
