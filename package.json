@@ -1,9 +1,13 @@
 {
-  "name": "template-javascript",
-  "version": "0.0.0",
-  "description": "JavaScript template",
-  "main": "index.js",
-  "dependencies": {},
+  "name": "exercises-js-express-sandbox",
+  "version": "0.1.0",
+  "description": "Exercise to learn about dynamic web pages",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.0",
+    "morgan": "^1.9.1"
+  },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
@@ -16,11 +20,12 @@
   "scripts": {
     "docs": "npx jsdoc -c ./.jsdoc.conf.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jfarmer/template-javascript.git"
+    "url": "git+https://github.com/jfarmer/exercises-js-express-sandbox.git"
   },
   "keywords": [
     "javascript",
@@ -29,7 +34,7 @@
   "author": "Jesse Farmer <jesse@20bits.com>",
   "license": "CC-BY-SA-4.0",
   "bugs": {
-    "url": "https://github.com/jfarmer/template-javascript/issues"
+    "url": "https://github.com/jfarmer/exercises-js-express-sandbox/issues"
   },
-  "homepage": "https://github.com/jfarmer/template-javascript#readme"
+  "homepage": "https://github.com/jfarmer/exercises-js-express-sandbox#readme"
 }
