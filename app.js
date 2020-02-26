@@ -178,6 +178,13 @@ app.get('/greet', (request, response) => {
     </p>
     `;
   }
+  content += `
+    <form id="passName" method="GET" action="/greet">
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <input type="submit" value="Submit">
+    </form>
+  `;
+
   response.send(getLayoutHTML(content));
 });
 
