@@ -149,11 +149,41 @@ app.get('/bake', (request, response) => {
 
   content += '<ul>';
 
-  for(let i = 1; i <= count; i++) {
+  for (let i = 1; i <= count; i++) {
     content += `<li>${bakedGood} number ${i}</li>`;
   }
 
   content += '</ul>';
+
+  response.send(getLayoutHTML(content));
+});
+
+// Page to greet the user based on a name passed to the url
+app.get('/greet', (request, response) => {
+  let content;
+  console.log(request.query);
+  if (!request.query.name) {
+    content = `
+    <h1>Whoops</h1>
+    <p>
+      I didn't get your name!
+    </p>
+    `;
+  } else {
+    let name = capitalize(request.query.name);
+    content = `
+    <h1>Greetings, ${name}</h1>
+    <p>
+      Thank you for stopping by this page!  You will see a lot of cool stuff with this repo.
+    </p>
+    `;
+  }
+  content += `
+    <form id="passName" method="GET" action="/greet">
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <input type="submit" value="Submit">
+    </form>
+  `;
 
   response.send(getLayoutHTML(content));
 });
