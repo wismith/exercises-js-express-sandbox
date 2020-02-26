@@ -149,11 +149,105 @@ app.get('/bake', (request, response) => {
 
   content += '<ul>';
 
-  for(let i = 1; i <= count; i++) {
+  for (let i = 1; i <= count; i++) {
     content += `<li>${bakedGood} number ${i}</li>`;
   }
 
   content += '</ul>';
+
+  response.send(getLayoutHTML(content));
+});
+
+// Page to greet the user based on a name passed to the url
+app.get('/greet', (request, response) => {
+  let content;
+  console.log(request.query);
+  let name = 'YOUR_NAME';
+  if (request.query.name === undefined) {
+    content = `
+    <h1>Whoops</h1>
+    <p>
+      I didn't get your name!
+    </p>
+    `;
+  } else {
+    name = capitalize(request.query.name);
+    content = `
+    <h1>Greetings, ${name}</h1>
+    <p>
+      Thank you for stopping by this page!  You will see a lot of cool stuff with this repo.
+    </p>
+    `;
+  }
+  content += `
+    <form id="passName" method="GET" action="/greet">
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+      <input value="${name}" type="submit" value="Submit">
+    </form>
+  `;
+
+  response.send(getLayoutHTML(content));
+});
+
+app.get('/lookinggood', (request, response) => {
+  let background = request.query.background;
+  let text = request.query.text;
+  let border = request.query.border;
+  let content = `
+  <section id="to-colorize">
+  <h1>Colorize this page!</h1>
+  <p>
+    I've provided a few options for the colors for background, borders, and text.
+    Mess around with some options to find what you like!
+  </p>
+  </section>
+
+  <form id="colorizer" method="GET" action="/lookinggood">
+    <label for="background">Background</label>
+    <select name="background" id="background">
+      <option value="blue" selected>Blue</option>
+      <option value="red">Red</option>
+      <option value="yellow">Yellow</option>
+    </select>
+    <br><br>
+    <label for="text">Text</label>
+    <select name="text" id="text">
+      <option value="blue">Blue</option>
+      <option value="red" selected>Red</option>
+      <option value="yellow">Yellow</option>
+    </select>
+    <br><br>
+    <label for="border">Border</label>
+    <select name="border" id="border">
+      <option value="blue">Blue</option>
+      <option value="red">Red</option>
+      <option value="yellow" selected>Yellow</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Check it out!">
+  </form>
+  `;
+
+  let style = `
+  <style>
+    #to-colorize {
+      width: 75%
+      margin: 2% 2%;
+      padding: 2%;
+      background-color: ${background};
+      color: ${text};
+      border: 10px solid ${border};
+    }
+
+    form {
+      margin: 2% auto;
+    }
+  </style>
+  `;
+
+  if (request.query.background && request.query.text && request.query.border) {
+    content += style;
+  }
 
   response.send(getLayoutHTML(content));
 });
